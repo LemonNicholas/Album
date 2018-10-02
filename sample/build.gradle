@@ -15,6 +15,7 @@ android {
 
 dependencies {
 //    implementation rootProject.ext.dependencies.album
+//    implementation 'com.github.LemonNicholas:Album:2.1.2'
     implementation rootProject.ext.dependencies.appCompat
     implementation rootProject.ext.dependencies.design
     implementation rootProject.ext.dependencies.recyclerView
