@@ -16,6 +16,9 @@ android {
 dependencies {
 //    implementation rootProject.ext.dependencies.album
 //    implementation 'com.github.LemonNicholas:Album:2.1.3'
+    implementation 'com.github.LemonNicholas:FinestWebView-Android:1.2.9'
+//    implementation 'com.github.LemonNicholas:FinestWebView-Android:1.2.8'
+
     implementation rootProject.ext.dependencies.appCompat
     implementation rootProject.ext.dependencies.design
     implementation rootProject.ext.dependencies.recyclerView
