@@ -21,10 +21,10 @@ ext {
     bintray = [
             version       : "2.1.3",
 
-            siteUrl       : 'https://github.com/yanzhenjie/Album',
-            gitUrl        : 'git@github.com:yanzhenjie/Album.git',
+            siteUrl       : 'https://github.com/LemonNicholas/Album',
+            gitUrl        : 'git@github.com:LemonNicholas/Album.git',
 
-            group         : "com.yanzhenjie",
+            group         : "com.LemonNicholas",
 
             packaging     : 'aar',
             name          : 'Album',
