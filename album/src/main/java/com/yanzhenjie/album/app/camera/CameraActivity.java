@@ -175,14 +175,21 @@ public class CameraActivity extends BaseActivity {
     }
 
     private void callbackResult() {
-        if (sResult != null) sResult.onAction(mCameraFilePath);
+        long totalFileSize = 0;
+        if (TextUtils.isEmpty(mCameraFilePath)) {
+            File file = new File(mCameraFilePath);
+            if (file.exists())
+                totalFileSize = file.length();
+        }
+
+        if (sResult != null) sResult.onAction(mCameraFilePath, totalFileSize);
         sResult = null;
         sCancel = null;
         finish();
     }
 
     private void callbackCancel() {
-        if (sCancel != null) sCancel.onAction("User canceled.");
+        if (sCancel != null) sCancel.onAction("User canceled.", 0);
         sResult = null;
         sCancel = null;
         finish();

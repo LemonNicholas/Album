@@ -69,7 +69,11 @@ public class GalleryActivity extends BaseActivity implements Contract.GalleryPre
 
     private void setCheckedCount() {
         String completeText = getString(R.string.album_menu_finish);
-        completeText += "(" + sCheckedCount + " / " + mAllowSelectCount + ")";
+        if(mAllowSelectCount == Integer.MAX_VALUE){
+            completeText += "(" + sCheckedCount + ")";
+        }else{
+            completeText += "(" + sCheckedCount + " / " + mAllowSelectCount + ")";
+        }
         mView.setCompleteText(completeText);
     }
 

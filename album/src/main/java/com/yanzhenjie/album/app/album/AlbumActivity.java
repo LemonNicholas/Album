@@ -204,7 +204,11 @@ public class AlbumActivity extends BaseActivity implements
             showFolderAlbumFiles(0);
             int count = mCheckedList.size();
             mView.setCheckedCount(count);
-            mView.setSubTitle(count + "/" + mLimitCount);
+            if(mLimitCount == Integer.MAX_VALUE){
+                mView.setSubTitle(count+"");
+            }else{
+                mView.setSubTitle(count + "/" + mLimitCount);
+            }
         }
     }
 
@@ -215,7 +219,14 @@ public class AlbumActivity extends BaseActivity implements
                 if (resultCode == RESULT_OK) {
                     String imagePath = NullActivity.parsePath(data);
                     String mimeType = AlbumUtils.getMimeType(imagePath);
-                    if (!TextUtils.isEmpty(mimeType)) mCameraAction.onAction(imagePath);
+                    long totalFileSize = 0;
+                    if(!TextUtils.isEmpty(imagePath)){
+                        File file = new File(imagePath);
+                        if(file.exists()){
+                            totalFileSize = file.length();
+                        }
+                    }
+                    if (!TextUtils.isEmpty(mimeType)) mCameraAction.onAction(imagePath,totalFileSize);
                 } else {
                     callbackCancel();
                 }
@@ -342,7 +353,7 @@ public class AlbumActivity extends BaseActivity implements
 
     private Action<String> mCameraAction = new Action<String>() {
         @Override
-        public void onAction(@NonNull String result) {
+        public void onAction(@NonNull String result,long totalSize) {
             if (mMediaScanner == null) {
                 mMediaScanner = new MediaScanner(AlbumActivity.this);
             }
@@ -393,7 +404,11 @@ public class AlbumActivity extends BaseActivity implements
         mCheckedList.add(albumFile);
         int count = mCheckedList.size();
         mView.setCheckedCount(count);
-        mView.setSubTitle(count + "/" + mLimitCount);
+        if(mLimitCount == Integer.MAX_VALUE){
+            mView.setSubTitle(count+"");
+        }else{
+            mView.setSubTitle(count + "/" + mLimitCount);
+        }
 
         switch (mChoiceMode) {
             case Album.MODE_SINGLE: {
@@ -450,7 +465,11 @@ public class AlbumActivity extends BaseActivity implements
     private void setCheckedCount() {
         int count = mCheckedList.size();
         mView.setCheckedCount(count);
-        mView.setSubTitle(count + "/" + mLimitCount);
+        if(mLimitCount == Integer.MAX_VALUE){
+            mView.setSubTitle(count+"");
+        }else{
+            mView.setSubTitle(count + "/" + mLimitCount);
+        }
     }
 
     @Override
@@ -564,7 +583,12 @@ public class AlbumActivity extends BaseActivity implements
 
     @Override
     public void onThumbnailCallback(ArrayList<AlbumFile> albumFiles) {
-        if (sResult != null) sResult.onAction(albumFiles);
+        long totalFileSize = 0;
+        if(albumFiles!=null)
+        for (AlbumFile albumFile : albumFiles){
+            totalFileSize +=albumFile.getSize();
+        }
+        if (sResult != null) sResult.onAction(albumFiles,totalFileSize);
         dismissLoadingDialog();
         finish();
     }
@@ -573,7 +597,7 @@ public class AlbumActivity extends BaseActivity implements
      * Callback cancel action.
      */
     private void callbackCancel() {
-        if (sCancel != null) sCancel.onAction("User canceled.");
+        if (sCancel != null) sCancel.onAction("User canceled.",0);
         finish();
     }
 

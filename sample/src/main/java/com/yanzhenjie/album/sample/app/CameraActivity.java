@@ -59,18 +59,12 @@ public class CameraActivity extends AppCompatActivity {
 //                .filePath()
                 .onResult(new Action<String>() {
                     @Override
-                    public void onAction(@NonNull String result) {
+                    public void onAction(@NonNull String result,long totalSize) {
                         mTextView.setText(result);
 
                         Album.getAlbumConfig()
                                 .getAlbumLoader()
                                 .load(mImageView, result);
-                    }
-                })
-                .onCancel(new Action<String>() {
-                    @Override
-                    public void onAction(@NonNull String result) {
-                        Toast.makeText(CameraActivity.this, R.string.canceled, Toast.LENGTH_LONG).show();
                     }
                 })
                 .start();
@@ -85,18 +79,12 @@ public class CameraActivity extends AppCompatActivity {
                 .limitBytes(Integer.MAX_VALUE)
                 .onResult(new Action<String>() {
                     @Override
-                    public void onAction(@NonNull String result) {
+                    public void onAction(@NonNull String result,long totalSize) {
                         mTextView.setText(result);
 
                         Album.getAlbumConfig()
                                 .getAlbumLoader()
                                 .load(mImageView, result);
-                    }
-                })
-                .onCancel(new Action<String>() {
-                    @Override
-                    public void onAction(@NonNull String result) {
-                        Toast.makeText(CameraActivity.this, R.string.canceled, Toast.LENGTH_LONG).show();
                     }
                 })
                 .start();

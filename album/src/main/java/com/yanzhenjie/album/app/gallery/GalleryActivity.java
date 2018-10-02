@@ -105,7 +105,11 @@ public class GalleryActivity extends BaseActivity implements Contract.GalleryPre
         }
 
         String completeText = getString(R.string.album_menu_finish);
-        completeText += "(" + checkedCount + " / " + mPathList.size() + ")";
+        if(mPathList.size() == Integer.MAX_VALUE){
+            completeText += "(" + checkedCount + ")";
+        }else{
+            completeText += "(" + checkedCount + " / " + mPathList.size() + ")";
+        }
         mView.setCompleteText(completeText);
     }
 
@@ -130,16 +134,18 @@ public class GalleryActivity extends BaseActivity implements Contract.GalleryPre
         if (sResult != null) {
             ArrayList<String> checkedList = new ArrayList<>();
             for (Map.Entry<String, Boolean> entry : mCheckedMap.entrySet()) {
-                if (entry.getValue()) checkedList.add(entry.getKey());
+                if (entry.getValue()) {
+                    checkedList.add(entry.getKey());
+                }
             }
-            sResult.onAction(checkedList);
+            sResult.onAction(checkedList, 0);
         }
         finish();
     }
 
     @Override
     public void onBackPressed() {
-        if (sCancel != null) sCancel.onAction("User canceled.");
+        if (sCancel != null) sCancel.onAction("User canceled.", 0);
         finish();
     }
 

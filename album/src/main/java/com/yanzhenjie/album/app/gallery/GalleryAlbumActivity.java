@@ -96,7 +96,11 @@ public class GalleryAlbumActivity extends BaseActivity implements Contract.Galle
         }
 
         String completeText = getString(R.string.album_menu_finish);
-        completeText += "(" + checkedCount + " / " + mAlbumFiles.size() + ")";
+        if(mAlbumFiles.size() == Integer.MAX_VALUE){
+            completeText += "(" + checkedCount + ")";
+        }else{
+            completeText += "(" + checkedCount + " / " + mAlbumFiles.size() + ")";
+        }
         mView.setCompleteText(completeText);
     }
 
@@ -130,18 +134,22 @@ public class GalleryAlbumActivity extends BaseActivity implements Contract.Galle
     @Override
     public void complete() {
         if (sResult != null) {
+            long totalFileSize = 0;
             ArrayList<AlbumFile> checkedList = new ArrayList<>();
             for (AlbumFile albumFile : mAlbumFiles) {
-                if (albumFile.isChecked()) checkedList.add(albumFile);
+                if (albumFile.isChecked()) {
+                    checkedList.add(albumFile);
+                    totalFileSize += albumFile.getSize();
+                }
             }
-            sResult.onAction(checkedList);
+            sResult.onAction(checkedList, totalFileSize);
         }
         finish();
     }
 
     @Override
     public void onBackPressed() {
-        if (sCancel != null) sCancel.onAction("User canceled.");
+        if (sCancel != null) sCancel.onAction("User canceled.", 0);
         finish();
     }
 
