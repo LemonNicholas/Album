@@ -202,7 +202,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, OnGe
         mBaseRotation = 0.0f;
 
         // Finally, update the UI so that we're zoomable
-        setZoomable(zoomable);
+        setZoomable(false);
     }
 
     @Override

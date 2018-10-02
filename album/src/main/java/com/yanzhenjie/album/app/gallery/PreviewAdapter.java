@@ -101,6 +101,10 @@ public abstract class PreviewAdapter<T> extends PagerAdapter
         container.removeView(((View) object));
     }
 
+    public T getData(int position){
+        return mPreviewList.get(position);
+    }
+
     @Override
     public void onClick(View v) {
         mItemClickListener.onItemClick(v, v.getId());

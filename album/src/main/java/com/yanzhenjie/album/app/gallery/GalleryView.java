@@ -16,20 +16,25 @@
 package com.yanzhenjie.album.app.gallery;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.R;
 import com.yanzhenjie.album.api.widget.Widget;
 import com.yanzhenjie.album.app.Contract;
+import com.yanzhenjie.album.impl.OnItemClickListener;
 import com.yanzhenjie.album.util.SystemBar;
 
 /**
@@ -46,6 +51,7 @@ public class GalleryView<Data> extends Contract.GalleryView<Data> implements Vie
     private TextView mTvDuration;
     private AppCompatCheckBox mCheckBox;
     private FrameLayout mLayoutLayer;
+    private ImageView mPlayBtn;
 
     public GalleryView(Activity activity, Contract.GalleryPresenter presenter) {
         super(activity, presenter);
@@ -55,6 +61,7 @@ public class GalleryView<Data> extends Contract.GalleryView<Data> implements Vie
         this.mTvDuration = activity.findViewById(R.id.tv_duration);
         this.mCheckBox = activity.findViewById(R.id.check_box);
         this.mLayoutLayer = activity.findViewById(R.id.layout_layer);
+        this.mPlayBtn = activity.findViewById(R.id.playBtn);
 
         this.mCheckBox.setOnClickListener(this);
         this.mLayoutLayer.setOnClickListener(this);
@@ -100,10 +107,22 @@ public class GalleryView<Data> extends Contract.GalleryView<Data> implements Vie
     }
 
     @Override
-    public void bindData(PreviewAdapter<Data> adapter) {
+    public void bindData(final PreviewAdapter<Data> adapter) {
         if (adapter.getCount() > 3) mViewPager.setOffscreenPageLimit(3);
         else if (adapter.getCount() > 2) mViewPager.setOffscreenPageLimit(2);
         mViewPager.setAdapter(adapter);
+        adapter.setItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if(adapter.getData(position) instanceof AlbumFile){
+                    AlbumFile albumFile = ((AlbumFile)adapter.getData(position));
+                    if(albumFile.getMediaType() != AlbumFile.TYPE_VIDEO) return;
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(albumFile.getPath()));
+                    intent.setDataAndType(Uri.parse(albumFile.getPath()), "video/mp4");
+                    mActivity.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
@@ -114,6 +133,7 @@ public class GalleryView<Data> extends Contract.GalleryView<Data> implements Vie
     @Override
     public void setDurationDisplay(boolean display) {
         mTvDuration.setVisibility(display ? View.VISIBLE : View.GONE);
+        mPlayBtn.setVisibility(display ? View.VISIBLE : View.GONE);
     }
 
     @Override

@@ -18,6 +18,8 @@ package com.yanzhenjie.album.app.album.data;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.WorkerThread;
 
@@ -26,6 +28,7 @@ import com.yanzhenjie.album.AlbumFolder;
 import com.yanzhenjie.album.Filter;
 import com.yanzhenjie.album.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -170,6 +173,15 @@ public class MediaReader {
                 videoFile.setLongitude(longitude);
                 videoFile.setSize(size);
                 videoFile.setDuration(duration);
+                if(duration == 0){
+                    MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                    retriever.setDataSource(mContext, Uri.fromFile(new File(path)));
+                    String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+                    long timeInMillisec = Long.parseLong(time);
+
+                    retriever.release();
+                    videoFile.setDuration(timeInMillisec);
+                }
 
                 if (mSizeFilter != null && mSizeFilter.filter(size)) {
                     if (!mFilterVisibility) continue;
