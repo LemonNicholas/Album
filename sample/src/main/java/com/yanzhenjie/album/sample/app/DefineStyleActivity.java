@@ -87,8 +87,8 @@ public class DefineStyleActivity extends AppCompatActivity {
                                 .title(mToolbar.getTitle().toString())
                                 .statusBarColor(Color.WHITE)
                                 .toolBarColor(Color.WHITE)
-                                .mediaItemCheckSelector(Color.BLUE, Color.GREEN)
-                                .bucketItemCheckSelector(Color.RED, Color.YELLOW)
+                                .mediaItemCheckSelector(Color.WHITE, Color.WHITE)
+                                .bucketItemCheckSelector(Color.WHITE, Color.WHITE)
                                 .buttonStyle(
                                         Widget.ButtonStyle.newLightBuilder(this)
                                                 .setButtonSelector(Color.WHITE, Color.WHITE)
@@ -98,7 +98,7 @@ public class DefineStyleActivity extends AppCompatActivity {
                 )
                 .onResult(new Action<ArrayList<AlbumFile>>() {
                     @Override
-                    public void onAction(@NonNull ArrayList<AlbumFile> result,long totalSize) {
+                    public void onAction(@NonNull ArrayList<AlbumFile> result, long totalSize) {
                         mAlbumFiles = result;
                         mAdapter.notifyDataSetChanged(mAlbumFiles);
                         mTvMessage.setVisibility(result.size() > 0 ? View.VISIBLE : View.GONE);
@@ -133,7 +133,7 @@ public class DefineStyleActivity extends AppCompatActivity {
                     )
                     .onResult(new Action<ArrayList<AlbumFile>>() {
                         @Override
-                        public void onAction(@NonNull ArrayList<AlbumFile> result,long totalSize) {
+                        public void onAction(@NonNull ArrayList<AlbumFile> result, long totalSize) {
                             mAlbumFiles = result;
                             mAdapter.notifyDataSetChanged(mAlbumFiles);
                             mTvMessage.setVisibility(result.size() > 0 ? View.VISIBLE : View.GONE);

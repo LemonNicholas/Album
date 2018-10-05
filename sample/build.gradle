@@ -16,7 +16,7 @@ android {
 dependencies {
 //    implementation rootProject.ext.dependencies.album
     implementation 'com.github.LemonNicholas:FinestWebView-Android:1.2.9'
-//    implementation 'com.github.LemonNicholas:Album:2.1.4'
+//    implementation 'com.github.LemonNicholas:Album:2.1.5'
 
 //    implementation 'com.github.LemonNicholas:FinestWebView-Android:1.2.8'
 

@@ -32,4 +32,5 @@
 
     <color name="albumSheetBottom">#992B2B2B</color>
     <color name="albumSheetLayer">#EE2B2B2B</color>
+    <color name="albumImageCover">#402B2B2B</color>
 </resources>

@@ -25,6 +25,11 @@
             android:contentDescription="@string/album_title"
             android:scaleType="centerCrop" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/albumImageCover" />
+
         <com.yanzhenjie.album.widget.TransferLayout
             style="@style/Album.WrapContent.Transfer"
             android:layout_alignParentEnd="true"

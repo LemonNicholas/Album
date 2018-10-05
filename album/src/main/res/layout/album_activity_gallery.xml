@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright 2017 YanZhenjie.
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +20,11 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         style="@style/Album.MatchParent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/albumSheetBottom" />
 
     <RelativeLayout
         style="@style/Album.MatchParent"
@@ -90,8 +94,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone"
-            android:src="@android:drawable/ic_media_play"/>
+            android:src="@android:drawable/ic_media_play"
+            android:visibility="gone" />
     </RelativeLayout>
+
 
 </FrameLayout>
