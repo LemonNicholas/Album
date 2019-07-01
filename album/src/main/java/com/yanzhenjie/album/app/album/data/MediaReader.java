@@ -22,6 +22,7 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.WorkerThread;
+import android.text.TextUtils;
 
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.AlbumFolder;
@@ -173,14 +174,15 @@ public class MediaReader {
                 videoFile.setLongitude(longitude);
                 videoFile.setSize(size);
                 videoFile.setDuration(duration);
-                if(duration == 0){
+                if (duration == 0) {
                     MediaMetadataRetriever retriever = new MediaMetadataRetriever();
                     retriever.setDataSource(mContext, Uri.fromFile(new File(path)));
                     String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-                    long timeInMillisec = Long.parseLong(time);
-
+                    if (!TextUtils.isEmpty(time)) {
+                        long timeInMillisec = Long.parseLong(time);
+                        videoFile.setDuration(timeInMillisec);
+                    }
                     retriever.release();
-                    videoFile.setDuration(timeInMillisec);
                 }
 
                 if (mSizeFilter != null && mSizeFilter.filter(size)) {

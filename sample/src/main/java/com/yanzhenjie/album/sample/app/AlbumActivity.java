@@ -77,29 +77,58 @@ public class AlbumActivity extends AppCompatActivity {
      * Select picture, from album.
      */
     private void selectAlbum() {
+//        Album.album(this)
+//                .multipleChoice()
+//                .columnCount(2)
+////                .selectCount(6)
+//                .camera(true)
+//                .cameraVideoQuality(1)
+//                .cameraVideoLimitDuration(Integer.MAX_VALUE)
+//                .cameraVideoLimitBytes(Integer.MAX_VALUE)
+//                .checkedList(mAlbumFiles)
+//                .widget(
+//                        Widget.newDarkBuilder(this)
+//                                .title(mToolbar.getTitle().toString())
+//                                .build()
+//                )
+//                .onResult(new Action<ArrayList<AlbumFile>>() {
+//                    @Override
+//                    public void onAction(@NonNull ArrayList<AlbumFile> result,long totalSize) {
+//                        mAlbumFiles = result;
+//                        mAdapter.notifyDataSetChanged(mAlbumFiles);
+//                        mTvMessage.setVisibility(result.size() > 0 ? View.VISIBLE : View.GONE);
+//                    }
+//                })
+//                .start();
+
         Album.album(this)
                 .multipleChoice()
                 .columnCount(2)
-//                .selectCount(6)
                 .camera(true)
                 .cameraVideoQuality(1)
                 .cameraVideoLimitDuration(Integer.MAX_VALUE)
                 .cameraVideoLimitBytes(Integer.MAX_VALUE)
+                .selectCount(20)
                 .checkedList(mAlbumFiles)
-                .widget(
-                        Widget.newDarkBuilder(this)
-                                .title(mToolbar.getTitle().toString())
-                                .build()
-                )
+                .widget(Widget.newLightBuilder(this)
+                        .statusBarColor(Color.WHITE)
+                        .toolBarColor(Color.WHITE)
+                        .mediaItemCheckSelector(Color.WHITE, Color.WHITE)
+                        .bucketItemCheckSelector(Color.WHITE, Color.WHITE)
+                        .buttonStyle(Widget.ButtonStyle.newLightBuilder(this)
+                                .setButtonSelector(Color.WHITE, Color.WHITE)
+                                .build())
+                        .build())
                 .onResult(new Action<ArrayList<AlbumFile>>() {
                     @Override
-                    public void onAction(@NonNull ArrayList<AlbumFile> result,long totalSize) {
+                    public void onAction(@NonNull ArrayList<AlbumFile> result, long totalSize) {
                         mAlbumFiles = result;
                         mAdapter.notifyDataSetChanged(mAlbumFiles);
                         mTvMessage.setVisibility(result.size() > 0 ? View.VISIBLE : View.GONE);
                     }
-                })
-                .start();
+                }).start();
+//                .onResult { result, totalSize -> selectMediaCallback(result, totalSize) }
+//                            .start()
     }
 
     /**
