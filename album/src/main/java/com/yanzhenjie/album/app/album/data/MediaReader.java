@@ -175,14 +175,18 @@ public class MediaReader {
                 videoFile.setSize(size);
                 videoFile.setDuration(duration);
                 if (duration == 0) {
-                    MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-                    retriever.setDataSource(mContext, Uri.fromFile(new File(path)));
-                    String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-                    if (!TextUtils.isEmpty(time)) {
-                        long timeInMillisec = Long.parseLong(time);
-                        videoFile.setDuration(timeInMillisec);
+                    try {
+                        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                        retriever.setDataSource(mContext, Uri.fromFile(new File(path)));
+                        String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+                        if (!TextUtils.isEmpty(time)) {
+                            long timeInMillisec = Long.parseLong(time);
+                            videoFile.setDuration(timeInMillisec);
+                        }
+                        retriever.release();
+                    } catch (Exception e) {
+
                     }
-                    retriever.release();
                 }
 
                 if (mSizeFilter != null && mSizeFilter.filter(size)) {
