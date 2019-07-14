@@ -15,6 +15,9 @@
  */
 package com.yanzhenjie.album.sample;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumConfig;
 
@@ -33,6 +36,13 @@ public class Application extends android.app.Application {
         super.onCreate();
         if (instance == null) {
             instance = this;
+
+            ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+                    .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())
+                    .setResizeAndRotateEnabledForNetwork(true)
+                    .setDownsampleEnabled(true)
+                    .build();
+            Fresco.initialize(this, config);
 
             Album.initialize(AlbumConfig.newBuilder(this)
                     .setAlbumLoader(new MediaLoader())

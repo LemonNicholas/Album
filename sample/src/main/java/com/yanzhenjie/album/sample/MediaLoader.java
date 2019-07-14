@@ -15,30 +15,52 @@
  */
 package com.yanzhenjie.album.sample;
 
+import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.AlbumLoader;
-import com.yanzhenjie.album.sample.R;
+
+import java.io.File;
 
 /**
  * Created by Yan Zhenjie on 2017/3/31.
  */
 public class MediaLoader implements AlbumLoader {
 
+//    @Override
+//    public void load(ImageView imageView, AlbumFile albumFile) {
+//        load(imageView, albumFile.getPath());
+//    }
+//
+//    @Override
+//    public void load(ImageView imageView, String url) {
+////        Uri imageUri = Uri.parse("https://i.imgur.com/tGbaZCY.jpg");
+////        draweeView.setImageURI(imageUri);
+//        Glide.with(imageView.getContext())
+//                .load(url)
+//                .error(R.drawable.placeholder)
+//                .placeholder(R.drawable.placeholder)
+//                .crossFade()
+//                .into(imageView);
+//    }
+
     @Override
-    public void load(ImageView imageView, AlbumFile albumFile) {
+    public void load(SimpleDraweeView imageView, AlbumFile albumFile) {
         load(imageView, albumFile.getPath());
     }
 
     @Override
-    public void load(ImageView imageView, String url) {
-        Glide.with(imageView.getContext())
-                .load(url)
-                .error(R.drawable.placeholder)
-                .placeholder(R.drawable.placeholder)
-                .crossFade()
-                .into(imageView);
+    public void load(SimpleDraweeView imageView, String url) {
+        Uri imageUri;
+        if(url.startsWith("http")){
+            imageUri = Uri.parse(url);
+        }else{
+            imageUri = Uri.fromFile(new File(url));
+        }
+
+        imageView.setImageURI(imageUri);
     }
 }

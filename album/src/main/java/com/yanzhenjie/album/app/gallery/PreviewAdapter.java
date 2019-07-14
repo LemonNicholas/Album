@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.impl.OnItemClickListener;
 import com.yanzhenjie.album.widget.photoview.AttacherImageView;
 import com.yanzhenjie.album.widget.photoview.PhotoViewAttacher;
@@ -116,5 +117,5 @@ public abstract class PreviewAdapter<T> extends PagerAdapter
         return true;
     }
 
-    protected abstract void loadPreview(ImageView imageView, T item, int position);
+    protected abstract void loadPreview(SimpleDraweeView imageView, T item, int position);
 }

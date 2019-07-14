@@ -25,6 +25,8 @@
         android:background="?selectableItemBackground"
         android:contentDescription="@string/album_title"
         android:scaleType="center"
+        app:actualImageScaleType="center"
+        app:actualImageResource="@drawable/album_ic_add_photo_white"
         android:src="@drawable/album_ic_add_photo_white" />
 
 </com.yanzhenjie.album.widget.SquareCardView>

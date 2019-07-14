@@ -27,6 +27,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.R;
@@ -189,7 +190,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private final OnItemClickListener mItemClickListener;
         private final OnCheckedClickListener mCheckedClickListener;
 
-        private ImageView mIvImage;
+        private SimpleDraweeView mIvImage;
         private AppCompatCheckBox mCheckBox;
 
         private FrameLayout mLayoutLayer;
@@ -242,7 +243,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private final OnItemClickListener mItemClickListener;
         private final OnCheckedClickListener mCheckedClickListener;
 
-        private ImageView mIvImage;
+        private SimpleDraweeView mIvImage;
         private AppCompatCheckBox mCheckBox;
         private TextView mTvDuration;
 

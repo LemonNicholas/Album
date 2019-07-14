@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.sample.R;
@@ -37,7 +38,7 @@ import com.yanzhenjie.album.sample.R;
 public class CameraActivity extends AppCompatActivity {
 
     TextView mTextView;
-    private ImageView mImageView;
+    private SimpleDraweeView mImageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

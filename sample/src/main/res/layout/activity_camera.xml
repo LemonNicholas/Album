@@ -31,7 +31,7 @@
             style="@style/Album.WrapContent.WidthMatchParent"
             android:layout_margin="@dimen/album_dp_10" />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/image_view"
             style="@style/Album.MatchParent"
             android:contentDescription="@string/app_name"

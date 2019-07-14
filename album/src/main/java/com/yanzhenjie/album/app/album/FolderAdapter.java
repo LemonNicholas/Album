@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.AlbumFolder;
@@ -95,7 +96,7 @@ class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderViewHolder>
 
         private OnItemClickListener mItemClickListener;
 
-        private ImageView mIvImage;
+        private SimpleDraweeView mIvImage;
         private TextView mTvTitle;
         private AppCompatRadioButton mCheckBox;
 

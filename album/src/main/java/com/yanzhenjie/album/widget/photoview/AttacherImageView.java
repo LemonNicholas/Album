@@ -5,11 +5,13 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 /**
  * Created by Yan Zhenjie on 2017/3/31.
  */
 
-public class AttacherImageView extends android.support.v7.widget.AppCompatImageView {
+public class AttacherImageView extends SimpleDraweeView {
 
     private PhotoViewAttacher mAttacher;
 

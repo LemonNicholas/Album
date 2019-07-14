@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.impl.OnItemClickListener;
@@ -101,7 +102,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final OnItemClickListener mItemClickListener;
-        private ImageView mIvImage;
+        private SimpleDraweeView mIvImage;
 
         ImageViewHolder(View itemView, OnItemClickListener itemClickListener) {
             super(itemView);
@@ -128,7 +129,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private final OnItemClickListener mItemClickListener;
 
-        private ImageView mIvImage;
+        private SimpleDraweeView mIvImage;
         private TextView mTvDuration;
 
         VideoViewHolder(View itemView, OnItemClickListener itemClickListener) {

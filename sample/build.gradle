@@ -25,6 +25,7 @@ dependencies {
     implementation rootProject.ext.dependencies.recyclerView
     implementation rootProject.ext.dependencies.cardView
     implementation rootProject.ext.dependencies.glide
-    implementation 'com.github.LemonNicholas:Album:2.1.8'
-//    implementation project(':album')
+//    implementation 'com.github.LemonNicholas:Album:2.1.8'
+    implementation project(':album')
+    implementation "com.facebook.fresco:fresco:1.13.0"
 }

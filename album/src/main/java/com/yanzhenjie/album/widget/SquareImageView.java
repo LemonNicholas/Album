@@ -20,10 +20,12 @@ import android.content.res.Configuration;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 /**
  * Created by YanZhenjie on 2018/4/19.
  */
-public class SquareImageView extends android.support.v7.widget.AppCompatImageView {
+public class SquareImageView extends SimpleDraweeView {
 
     private Configuration mConfig;
 

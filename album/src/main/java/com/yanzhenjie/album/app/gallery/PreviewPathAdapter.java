@@ -18,6 +18,7 @@ package com.yanzhenjie.album.app.gallery;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.Album;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class PreviewPathAdapter extends PreviewAdapter<String> {
     }
 
     @Override
-    protected void loadPreview(ImageView imageView, String item, int position) {
+    protected void loadPreview(SimpleDraweeView imageView, String item, int position) {
         Album.getAlbumConfig().getAlbumLoader().load(imageView, item);
     }
 }
