@@ -54,13 +54,13 @@ public class MediaLoader implements AlbumLoader {
 
     @Override
     public void load(SimpleDraweeView imageView, String url) {
-        Uri imageUri;
-        if(url.startsWith("http")){
-            imageUri = Uri.parse(url);
-        }else{
-            imageUri = Uri.fromFile(new File(url));
-        }
+//        Uri imageUri;
+//        if(url.startsWith("http")){
+//            imageUri = Uri.parse(url);
+//        }else{
+//            imageUri = Uri.fromFile(new File(url));
+//        }
 
-        imageView.setImageURI(imageUri);
+        imageView.setImageURI(Uri.parse(url));
     }
 }

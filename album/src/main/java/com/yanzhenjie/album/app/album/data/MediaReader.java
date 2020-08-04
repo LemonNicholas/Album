@@ -16,6 +16,7 @@
 package com.yanzhenjie.album.app.album.data;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.media.MediaMetadataRetriever;
@@ -23,6 +24,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.AlbumFolder;
@@ -66,7 +68,8 @@ public class MediaReader {
             MediaStore.Images.Media.DATE_ADDED,
             MediaStore.Images.Media.LATITUDE,
             MediaStore.Images.Media.LONGITUDE,
-            MediaStore.Images.Media.SIZE
+            MediaStore.Images.Media.SIZE,
+            MediaStore.Images.Media._ID
     };
 
     /**
@@ -83,7 +86,10 @@ public class MediaReader {
 
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                String path = cursor.getString(0);
+                long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
+                Uri uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+
+//                String path2 = cursor.getString(0);
                 String bucketName = cursor.getString(1);
                 String mimeType = cursor.getString(2);
                 long addDate = cursor.getLong(3);
@@ -93,7 +99,7 @@ public class MediaReader {
 
                 AlbumFile imageFile = new AlbumFile();
                 imageFile.setMediaType(AlbumFile.TYPE_IMAGE);
-                imageFile.setPath(path);
+                imageFile.setPath(uri.toString());
                 imageFile.setBucketName(bucketName);
                 imageFile.setMimeType(mimeType);
                 imageFile.setAddDate(addDate);
