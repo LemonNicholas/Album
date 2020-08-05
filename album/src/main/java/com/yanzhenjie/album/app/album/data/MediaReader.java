@@ -86,10 +86,10 @@ public class MediaReader {
 
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
-                Uri uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+//                long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
+//                Uri uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 
-//                String path2 = cursor.getString(0);
+                String path = cursor.getString(0);
                 String bucketName = cursor.getString(1);
                 String mimeType = cursor.getString(2);
                 long addDate = cursor.getLong(3);
@@ -99,7 +99,7 @@ public class MediaReader {
 
                 AlbumFile imageFile = new AlbumFile();
                 imageFile.setMediaType(AlbumFile.TYPE_IMAGE);
-                imageFile.setPath(uri.toString());
+                imageFile.setPath(path);
                 imageFile.setBucketName(bucketName);
                 imageFile.setMimeType(mimeType);
                 imageFile.setAddDate(addDate);
