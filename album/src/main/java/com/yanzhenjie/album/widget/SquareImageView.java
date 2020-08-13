@@ -17,7 +17,7 @@ package com.yanzhenjie.album.widget;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.facebook.drawee.view.SimpleDraweeView;

@@ -18,9 +18,10 @@ package com.yanzhenjie.album.app.camera;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 
 import com.yanzhenjie.album.Action;
@@ -182,7 +183,10 @@ public class CameraActivity extends BaseActivity {
                 totalFileSize = file.length();
         }
 
+
+
         if (sResult != null) sResult.onAction(mCameraFilePath, totalFileSize);
+//        if (sResult != null) sResult.onAction(Uri.fromFile(new File(mCameraFilePath)).toString(), totalFileSize);
         sResult = null;
         sCancel = null;
         finish();

@@ -16,9 +16,8 @@
 package com.yanzhenjie.album.sample;
 
 import android.net.Uri;
-import android.widget.ImageView;
+import android.util.Log;
 
-import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.AlbumLoader;
@@ -54,13 +53,15 @@ public class MediaLoader implements AlbumLoader {
 
     @Override
     public void load(SimpleDraweeView imageView, String url) {
-//        Uri imageUri;
-//        if(url.startsWith("http")){
-//            imageUri = Uri.parse(url);
-//        }else{
-//            imageUri = Uri.fromFile(new File(url));
-//        }
+        Uri imageUri;
+        if(url.startsWith("http")){
+            imageUri = Uri.parse(url);
+        }else{
+            imageUri = Uri.fromFile(new File(url));
+        }
 
-        imageView.setImageURI(Uri.parse(url));
+//        Log.wtf(MediaLoader.class.getSimpleName(), "url : " + url);
+//        Log.wtf(MediaLoader.class.getSimpleName(), "URI : " + Uri.fromFile(new File(url)));
+        imageView.setImageURI(imageUri);
     }
 }
